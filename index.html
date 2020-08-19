@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>WS Sample</title>
+
+    <script type="text/javascript">
+        const ws = new WebSocket("ws://mydomain.com/feed");
+        ws.addEventListener('open', function (event) {
+            console.log("Connected to Web Socket!");
+
+            let message = { action: 'msg_from_user', payload: {msg: 'Hello, from web browser!'}};
+            ws.send(JSON.stringify(message));
+        });
+        
+        ws.addEventListener('message', function (event) {
+            console.log('Got message from server.', event.data);
+            document.body.innerHTML = event.data;
+        });
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
